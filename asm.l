@@ -6,9 +6,14 @@
 %}
 
 %%
-[0-9]+(\.[0-9]+)?([eE][0-9]+)? {yylval.f = atof(yytext); return NUM;}
-[-+*()\n/=\\]  {return yytext[0];}
-[ \t\f\v] ;
+"$r"[A-Z]                           { yylval.c = yytext[2]-'A';  return VAR;}
+[0-9]+(\.[0-9]+)?([eE][0-9]+)?      {yylval.f = atof(yytext); return NUM;}
+[-+*()\n/=\\]                       {return *yytext;}
+"AND"                               {return AND;}
+"OR"                                {return OR;}
+"NOT"                               {return NOT;}
+"$acc"                              {return ACC;}
+[ \t\f\v] ; //Ignore
 . yyerror("Unknown character");
 
 %%

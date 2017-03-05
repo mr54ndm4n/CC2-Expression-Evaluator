@@ -45,22 +45,33 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    NUM = 258
+    NUM = 258,
+    AND = 259,
+    OR = 260,
+    NOT = 261,
+    ACC = 262,
+    VAR = 263
   };
 #endif
 /* Tokens.  */
 #define NUM 258
+#define AND 259
+#define OR 260
+#define NOT 261
+#define ACC 262
+#define VAR 263
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 8 "asm.y" /* yacc.c:1909  */
+#line 10 "asm.y" /* yacc.c:1909  */
 
     int f;
+    char c;
 
-#line 64 "y.tab.h" /* yacc.c:1909  */
+#line 75 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
