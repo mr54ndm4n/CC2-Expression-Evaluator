@@ -6,6 +6,13 @@
   void yyerror(char *msg);
   float acc = 0;
   int var[26];
+  
+  typedef struct node
+  {
+      int data;
+      struct node* next;
+  } node;
+
 %}
 %union {
     int i;
