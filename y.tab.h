@@ -82,7 +82,7 @@ union YYSTYPE
 {
 #line 49 "asm.y" /* yacc.c:1909  */
 
-    int i;
+    int i;  
     char c;
 
 #line 89 "y.tab.h" /* yacc.c:1909  */

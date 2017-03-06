@@ -183,7 +183,7 @@ union YYSTYPE
 {
 #line 49 "asm.y" /* yacc.c:355  */
 
-    int i;
+    int i;  
     char c;
 
 #line 190 "y.tab.c" /* yacc.c:355  */
@@ -1335,7 +1335,7 @@ yyreduce:
 
   case 9:
 #line 69 "asm.y" /* yacc.c:1646  */
-    {var[(yyvsp[0].c)] = (yyvsp[-1].i);}
+    {var[(yyvsp[0].c)] = (yyvsp[-1].i); printf("> ");}
 #line 1340 "y.tab.c" /* yacc.c:1646  */
     break;
 
@@ -1686,7 +1686,7 @@ yyreturn:
 
 
 void yyerror(char *msg) {
-  fprintf(stderr, "%s\n", "FUCK FUCK FUCK");
+  fprintf(stderr, "%s\n", msg);
 }
 int main(void) {
  init(reg);

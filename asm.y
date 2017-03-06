@@ -47,7 +47,7 @@
 
 %}
 %union {
-    int i;
+    int i;  
     char c;
 }
 %token <i> AND OR NOT XOR
@@ -66,7 +66,7 @@ S : E                {acc = $1; printf("= %d\n> ", $1);}
   | PUSH R           {reg = push(reg, $2); printf("> ");}
   | POP R            {reg = pop(reg, &var[$2]); printf("> ");}
   | SHOW R           {printf("= %d\n> ", $2);}
-  | LOAD R VAR       {var[$3] = $2;}
+  | LOAD R VAR       {var[$3] = $2; printf("> ");}
   ;
 
 E : E '+' T          {$$ = $1 + $3;}
