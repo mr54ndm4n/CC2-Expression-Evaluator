@@ -50,7 +50,12 @@ extern int yydebug;
     OR = 260,
     NOT = 261,
     ACC = 262,
-    VAR = 263
+    PUSH = 263,
+    POP = 264,
+    SHOW = 265,
+    LOAD = 266,
+    TOP = 267,
+    VAR = 268
   };
 #endif
 /* Tokens.  */
@@ -59,19 +64,24 @@ extern int yydebug;
 #define OR 260
 #define NOT 261
 #define ACC 262
-#define VAR 263
+#define PUSH 263
+#define POP 264
+#define SHOW 265
+#define LOAD 266
+#define TOP 267
+#define VAR 268
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 17 "asm.y" /* yacc.c:1909  */
+#line 46 "asm.y" /* yacc.c:1909  */
 
     int i;
     char c;
 
-#line 75 "y.tab.h" /* yacc.c:1909  */
+#line 85 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;
