@@ -45,43 +45,47 @@ extern int yydebug;
 # define YYTOKENTYPE
   enum yytokentype
   {
-    NUM = 258,
-    AND = 259,
-    OR = 260,
-    NOT = 261,
-    ACC = 262,
-    PUSH = 263,
-    POP = 264,
-    SHOW = 265,
-    LOAD = 266,
-    TOP = 267,
-    VAR = 268
+    AND = 258,
+    OR = 259,
+    NOT = 260,
+    XOR = 261,
+    NUM = 262,
+    ACC = 263,
+    PUSH = 264,
+    POP = 265,
+    SHOW = 266,
+    LOAD = 267,
+    TOP = 268,
+    SIZE = 269,
+    VAR = 270
   };
 #endif
 /* Tokens.  */
-#define NUM 258
-#define AND 259
-#define OR 260
-#define NOT 261
-#define ACC 262
-#define PUSH 263
-#define POP 264
-#define SHOW 265
-#define LOAD 266
-#define TOP 267
-#define VAR 268
+#define AND 258
+#define OR 259
+#define NOT 260
+#define XOR 261
+#define NUM 262
+#define ACC 263
+#define PUSH 264
+#define POP 265
+#define SHOW 266
+#define LOAD 267
+#define TOP 268
+#define SIZE 269
+#define VAR 270
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 46 "asm.y" /* yacc.c:1909  */
+#line 49 "asm.y" /* yacc.c:1909  */
 
     int i;
     char c;
 
-#line 85 "y.tab.h" /* yacc.c:1909  */
+#line 89 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

@@ -6,6 +6,7 @@
   void yyerror(char *msg);
   float acc = 0;
   int var[26];
+  int size;
 
   struct node
   {
@@ -28,6 +29,7 @@
       tmp->data = data;
       tmp->next = head;
       head = tmp;
+      size += 1;
       return head;
   }
 
@@ -37,6 +39,7 @@
       *element = head->data;
       head = head->next;
       free(tmp);
+      size -= 1;  
       return head;
   }
 
@@ -47,8 +50,8 @@
     int i;
     char c;
 }
-
-%token <i> NUM AND OR NOT ACC PUSH POP SHOW LOAD TOP
+%token <i> AND OR NOT XOR
+%token <i> NUM ACC PUSH POP SHOW LOAD TOP SIZE
 %token <c> VAR
 %type <i> E T F R
 
@@ -60,9 +63,9 @@ program:
 
 S : E                {acc = $1; printf("= %d\n> ", $1);}
   | VAR '=' E        {acc = $3; var[$1] = $3; printf("=  %d\n> ", $3);}
-  | PUSH R           {printf("PUSH %d\n> ", $2); reg = push(reg, $2);}
-  | POP R            {printf("POP %d\n> ", var[$2]); reg = pop(reg, &var[$2]);}
-  | SHOW R           {printf("SHOW %d\n> ", $2);}
+  | PUSH R           {reg = push(reg, $2); printf("> ");}
+  | POP R            {reg = pop(reg, &var[$2]); printf("> ");}
+  | SHOW R           {printf("= %d\n> ", $2);}
   | LOAD R R         {printf("LOAD");}
   ;
 
@@ -72,6 +75,7 @@ E : E '+' T          {$$ = $1 + $3;}
   | E AND T          {$$ = $1 & $3;}
   | E OR T           {$$ = $1 | $3;}
   | NOT T            {$$ = ~ $2;}
+  | E XOR T          {$$ = ~ $1 ^ $3;}
   ;
 
 T : T '*' F          {$$ = $1 * $3;}
@@ -89,6 +93,7 @@ F : '(' E ')'        {$$ = $2;}
 R : ACC              {$$ = acc;}
   | VAR              {$$ = var[$1];}
   | TOP              {$$ = reg->data;}
+  | SIZE             {$$ = size;}
 %%
 
 void yyerror(char *msg) {
@@ -96,6 +101,7 @@ void yyerror(char *msg) {
 }
 int main(void) {
  init(reg);
+ size = 0;
  printf("> ");
  yyparse();
 }

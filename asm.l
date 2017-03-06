@@ -17,11 +17,13 @@
 "AND"                               {return AND;}
 "OR"                                {return OR;}
 "NOT"                               {return NOT;}
+"^"                                 {return XOR;}
 "PUSH"                              {return PUSH;}
 "POP"                               {return POP;}
 "SHOW"                              {return SHOW;}
 "LOAD"                              {return LOAD;}
 "$top"                              {return TOP;}
+"$size"                             {return SIZE;}
 "$acc"                              {return ACC;}
 [ \t\f\v] ; //Ignore
 . yyerror("Unknown character");
