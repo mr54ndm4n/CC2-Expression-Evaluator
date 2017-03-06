@@ -130,7 +130,7 @@ union YYSTYPE
 {
 #line 10 "asm.y" /* yacc.c:355  */
 
-    int f;
+    int i;
     char c;
 
 #line 137 "y.tab.c" /* yacc.c:355  */
@@ -1242,103 +1242,103 @@ yyreduce:
     {
         case 4:
 #line 25 "asm.y" /* yacc.c:1646  */
-    {acc = (yyvsp[0].f); printf("= %d\n> ", (yyvsp[0].f));}
+    {acc = (yyvsp[0].i); printf("= %d\n> ", (yyvsp[0].i));}
 #line 1247 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 5:
 #line 26 "asm.y" /* yacc.c:1646  */
-    {acc = (yyvsp[0].f); var[(yyvsp[-2].c)] = (yyvsp[0].f); printf("=  %d\n> ", (yyvsp[0].f));}
+    {acc = (yyvsp[0].i); var[(yyvsp[-2].c)] = (yyvsp[0].i); printf("=  %d\n> ", (yyvsp[0].i));}
 #line 1253 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 6:
 #line 29 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[-2].f) + (yyvsp[0].f);}
+    {(yyval.i) = (yyvsp[-2].i) + (yyvsp[0].i);}
 #line 1259 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 7:
 #line 30 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[-2].f) - (yyvsp[0].f);}
+    {(yyval.i) = (yyvsp[-2].i) - (yyvsp[0].i);}
 #line 1265 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 8:
 #line 31 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[0].f);}
+    {(yyval.i) = (yyvsp[0].i);}
 #line 1271 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 9:
 #line 32 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[-2].f) & (yyvsp[0].f);}
+    {(yyval.i) = (yyvsp[-2].i) & (yyvsp[0].i);}
 #line 1277 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 10:
 #line 33 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[-2].f) | (yyvsp[0].f);}
+    {(yyval.i) = (yyvsp[-2].i) | (yyvsp[0].i);}
 #line 1283 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 11:
 #line 34 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = ~ (yyvsp[0].f);}
+    {(yyval.i) = ~ (yyvsp[0].i);}
 #line 1289 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 12:
 #line 37 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[-2].f) * (yyvsp[0].f);}
+    {(yyval.i) = (yyvsp[-2].i) * (yyvsp[0].i);}
 #line 1295 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 13:
 #line 38 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[-2].f) / (yyvsp[0].f);}
+    {(yyval.i) = (yyvsp[-2].i) / (yyvsp[0].i);}
 #line 1301 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 14:
 #line 39 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[-2].f) % (yyvsp[0].f);}
+    {(yyval.i) = (yyvsp[-2].i) % (yyvsp[0].i);}
 #line 1307 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 15:
 #line 40 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[0].f);}
+    {(yyval.i) = (yyvsp[0].i);}
 #line 1313 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 16:
 #line 43 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[-1].f);}
+    {(yyval.i) = (yyvsp[-1].i);}
 #line 1319 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 17:
 #line 44 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = -(yyvsp[0].f);}
+    {(yyval.i) = -(yyvsp[0].i);}
 #line 1325 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 18:
 #line 45 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = (yyvsp[0].f);}
+    {(yyval.i) = (yyvsp[0].i);}
 #line 1331 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 19:
 #line 46 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = acc;}
+    {(yyval.i) = acc;}
 #line 1337 "y.tab.c" /* yacc.c:1646  */
     break;
 
   case 20:
 #line 47 "asm.y" /* yacc.c:1646  */
-    {(yyval.f) = var[(yyvsp[0].c)];}
+    {(yyval.i) = var[(yyvsp[0].c)];}
 #line 1343 "y.tab.c" /* yacc.c:1646  */
     break;
 

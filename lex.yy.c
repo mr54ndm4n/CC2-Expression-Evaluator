@@ -770,7 +770,7 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 10 "asm.l"
-{yylval.f = atof(yytext); return NUM;}
+{yylval.i = atoi(yytext); return NUM;}
 	YY_BREAK
 case 3:
 /* rule 3 can match eol */

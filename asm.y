@@ -8,13 +8,13 @@
   int var[26];
 %}
 %union {
-    int f;
+    int i;
     char c;
 }
 
-%token <f> NUM AND OR NOT ACC
+%token <i> NUM AND OR NOT ACC
 %token <c> VAR
-%type <f> E T F
+%type <i> E T F
 
 %%
 program:

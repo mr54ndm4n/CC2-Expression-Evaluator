@@ -7,7 +7,7 @@
 
 %%
 "$r"[A-Z]                           { yylval.c = yytext[2]-'A';  return VAR;}
-[0-9]+(\.[0-9]+)?([eE][0-9]+)?      {yylval.f = atof(yytext); return NUM;}
+[0-9]+(\.[0-9]+)?([eE][0-9]+)?      {yylval.i = atoi(yytext); return NUM;}
 [-+*()\n/=\\]                       {return *yytext;}
 "AND"                               {return AND;}
 "OR"                                {return OR;}
