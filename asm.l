@@ -14,10 +14,10 @@
 [0-9A-Fa-f]+[Hh]                    {yylval.i = htoi(yytext); return NUM;}
 [0-9]+                              {yylval.i = atoi(yytext); return NUM;}
 [-+*()\n/=\\]                       {return *yytext;}
-"AND"                               {return AND;}
-"OR"                                {return OR;}
-"NOT"                               {return NOT;}
-"^"                                 {return XOR;}
+("AND"|"&")                         {return AND;}
+("OR"|"|")                          {return OR;}
+("NOT"|"!"|"~")                     {return NOT;}
+("XOR"|"^")                         {return XOR;}
 "PUSH"                              {return PUSH;}
 "POP"                               {return POP;}
 "SHOW"                              {return SHOW;}
