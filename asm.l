@@ -11,7 +11,6 @@
 %%
 
 "$r"[A-Z]                           { yylval.c = yytext[2]-'A';  return VAR;}
-[0-9A-Fa-f]+[Hh]                    {yylval.i = htoi(yytext); return NUM;}
 [0-9]+                              {yylval.i = atoi(yytext); return NUM;}
 [-+*()\n/=\\]                       {return *yytext;}
 ("AND"|"&")                         {return AND;}
