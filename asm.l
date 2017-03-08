@@ -26,7 +26,7 @@
 "$size"                             {return SIZE;}
 "$acc"                              {return ACC;}
 [ \t\f\v] ; //Ignore
-. yyerror("Unknown character");
+.                                   {return UNKNOWN;}
 
 %%
 
@@ -42,7 +42,7 @@ int Ohtoi(char c){
 		r = c - 'a' + 10;
 	}
 	return r;
-}	
+}
 
 int htoi(char *s){
 	int i;

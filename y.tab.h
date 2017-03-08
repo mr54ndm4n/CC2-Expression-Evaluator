@@ -57,7 +57,8 @@ extern int yydebug;
     LOAD = 267,
     TOP = 268,
     SIZE = 269,
-    VAR = 270
+    UNKNOWN = 270,
+    VAR = 271
   };
 #endif
 /* Tokens.  */
@@ -73,19 +74,20 @@ extern int yydebug;
 #define LOAD 267
 #define TOP 268
 #define SIZE 269
-#define VAR 270
+#define UNKNOWN 270
+#define VAR 271
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 
 union YYSTYPE
 {
-#line 49 "asm.y" /* yacc.c:1909  */
+#line 54 "asm.y" /* yacc.c:1909  */
 
-    int i;  
+    int i;
     char c;
 
-#line 89 "y.tab.h" /* yacc.c:1909  */
+#line 91 "y.tab.h" /* yacc.c:1909  */
 };
 
 typedef union YYSTYPE YYSTYPE;

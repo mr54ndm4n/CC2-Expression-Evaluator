@@ -4,6 +4,7 @@
 
   extern int yylex();
   void yyerror(char *msg);
+  void lexerror(int code);
   float acc = 0;
   int var[26];
   int size;
@@ -35,11 +36,15 @@
 
   struct node* pop(struct node *head,int *element)
   {
+      if(head == NULL){
+        lexerror(1);
+        return NULL;
+      }
       struct node* tmp = head;
       *element = head->data;
       head = head->next;
       free(tmp);
-      size -= 1;  
+      size -= 1;
       return head;
   }
 
@@ -47,11 +52,12 @@
 
 %}
 %union {
-    int i;  
+    int i;
     char c;
 }
 %token <i> AND OR NOT XOR
 %token <i> NUM ACC PUSH POP SHOW LOAD TOP SIZE
+%token <i> UNKNOWN
 %token <c> VAR
 %type <i> E T F R
 
@@ -67,6 +73,9 @@ S : E                {acc = $1; printf("= %d\n> ", $1);}
   | POP R            {reg = pop(reg, &var[$2]); printf("> ");}
   | SHOW R           {printf("= %d\n> ", $2);}
   | LOAD R VAR       {var[$3] = $2; printf("> ");}
+  | LOAD R TOP       {lexerror(1); printf("> ");}
+  | LOAD R SIZE      {lexerror(1); printf("> ");}
+  | UNKNOWN          {lexerror(1); printf("> ");}
   ;
 
 E : E '+' T          {$$ = $1 + $3;}
@@ -104,4 +113,16 @@ int main(void) {
  size = 0;
  printf("> ");
  yyparse();
+}
+
+void lexerror(int code){
+  switch(code){
+    case 1:
+      printf("!ERROR \n");
+      break;
+    default:
+      printf("!ERROR \n");
+      break;
+  }
+  return;
 }

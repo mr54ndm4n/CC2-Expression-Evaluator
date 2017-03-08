@@ -387,8 +387,8 @@ struct yy_trans_info
 static yyconst flex_int16_t yy_accept[56] =
     {   0,
         0,    0,   19,   17,   16,    4,    7,   17,    5,    4,
-        3,   17,   17,   17,   17,   17,   17,   17,   17,    8,
-        6,    0,    0,    0,    0,    3,    0,    2,    0,    0,
+        2,   17,   17,   17,   17,   17,   17,   17,   17,    8,
+        6,    0,    0,    0,    0,    2,    0,    3,    0,    0,
         0,    6,    0,    0,    0,    0,    0,    1,    0,    0,
         5,    0,    7,   10,    0,    0,    8,   15,    0,   13,
        12,    9,   11,   14,    0
@@ -797,12 +797,12 @@ YY_RULE_SETUP
 case 2:
 YY_RULE_SETUP
 #line 14 "asm.l"
-{yylval.i = htoi(yytext); return NUM;}
+{yylval.i = atoi(yytext); return NUM;}
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 15 "asm.l"
-{yylval.i = atoi(yytext); return NUM;}
+{yylval.i = htoi(yytext); return NUM;}
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
@@ -873,7 +873,7 @@ YY_RULE_SETUP
 case 17:
 YY_RULE_SETUP
 #line 29 "asm.l"
-yyerror("Unknown character");
+{return UNKNOWN;}
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
@@ -1897,7 +1897,7 @@ int Ohtoi(char c){
 		r = c - 'a' + 10;
 	}
 	return r;
-}	
+}
 
 int htoi(char *s){
 	int i;
