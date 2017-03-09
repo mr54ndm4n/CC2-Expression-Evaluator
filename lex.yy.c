@@ -509,8 +509,8 @@ char *yytext;
   #include <string.h>
   #include "y.tab.h"
   void yyerror(char *);
-  int htoi(char *);
-  int Ohtoi(char c);
+  int htoi(char *);   /* change base 16 to base 10 number */
+  int Ohtoi(char c);  /* change base 16 to base 10 number (1 character) */
 #line 515 "lex.yy.c"
 
 #define INITIAL 0
@@ -792,78 +792,78 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 YY_RULE_SETUP
 #line 13 "asm.l"
-{ yylval.c = yytext[2]-'A';  return VAR;}
+{ yylval.c = yytext[2]-'A';  return VAR;}   /* Variable Token ($rA-$rZ) */
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
 #line 14 "asm.l"
-{yylval.i = atoi(yytext); return NUM;}
+{yylval.i = atoi(yytext); return NUM;}      /* number Token (0-infinity)*/
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
 #line 15 "asm.l"
-{yylval.i = htoi(yytext); return NUM;}
+{yylval.i = htoi(yytext); return NUM;}      /* base 16 number Token (15AH) */
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
 #line 16 "asm.l"
-{return *yytext;}
+{return *yytext;}                           /* operation Token */
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
 #line 17 "asm.l"
-{return AND;}
+{return AND;}                               /* Bitwise AND Token */
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
 #line 18 "asm.l"
-{return OR;}
+{return OR;}                                /* Bitwise OR  Token */
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
 #line 19 "asm.l"
-{return NOT;}
+{return NOT;}                               /* Bitwise NOT Token */
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
 #line 20 "asm.l"
-{return XOR;}
+{return XOR;}                               /* Bitwise XOR Token */
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
 #line 21 "asm.l"
-{return PUSH;}
+{return PUSH;}                              /* PUSH Token */
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
 #line 22 "asm.l"
-{return POP;}
+{return POP;}                               /* POP Token */
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
 #line 23 "asm.l"
-{return SHOW;}
+{return SHOW;}                              /* SHOW Token */
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
 #line 24 "asm.l"
-{return LOAD;}
+{return LOAD;}                              /* LOAD Token */
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
 #line 25 "asm.l"
-{return TOP;}
+{return TOP;}                               /* $top Token */
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
 #line 26 "asm.l"
-{return SIZE;}
+{return SIZE;}                              /* $size Token */
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
 #line 27 "asm.l"
-{return ACC;}
+{return ACC;}                               /* $acc Token */
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
@@ -873,7 +873,7 @@ YY_RULE_SETUP
 case 17:
 YY_RULE_SETUP
 #line 29 "asm.l"
-{return UNKNOWN;}
+{return UNKNOWN;}                           /* out of gramma character Token */
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
@@ -1885,7 +1885,7 @@ void yyfree (void * ptr )
 
 
 
-int Ohtoi(char c){
+int Ohtoi(char c){  /* change base 16 to base 10 number (1 character) */
 	int r;
 	if(c>='0' && c<='9'){
 		r = c - '0';
@@ -1899,7 +1899,7 @@ int Ohtoi(char c){
 	return r;
 }
 
-int htoi(char *s){
+int htoi(char *s){  /* change base 16 to base 10 number */
 	int i;
 	int result = Ohtoi(s[0]);
 	for(i=1; i<strlen(s)-1; i++){

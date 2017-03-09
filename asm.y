@@ -73,7 +73,7 @@ S : E                {acc = $1; printf("= %d\n> ", $1);}
   | POP TOP          {lexerror(1); printf("> ");}                       /* "!Error" when pop to $top */
   | POP ACC          {lexerror(1); printf("> ");}                       /* "!Error" when pop to $acc */
   | POP SIZE         {lexerror(1); printf("> ");}                       /* "!Error" when pop to $size*/
-  | POP R            {reg = pop(reg, &var[$2]); printf("> ");}          /* Example : POP $rA pop value in top of stack to $rA*/
+  | POP  VAR         {reg = pop(reg, &var[$2]); printf("> ");}          /* Example : POP $rA pop value in top of stack to $rA*/
   | SHOW R           {printf("= %d\n> ", $2);}                          /* Example : SHOW $rA show value of $rA */
   | LOAD R TOP       {lexerror(1); printf("> ");}                       /* "!Error" when load to $top */
   | LOAD R ACC       {lexerror(1); printf("> ");}                       /* "!Error" when load to $top */
@@ -92,13 +92,13 @@ T : T '*' F          {$$ = $1 * $3;}                                    /* '*' O
   | T '\\' F         {$$ = $1 % $3;}                                    /* modulus Operation*/
   | T AND F          {$$ = $1 & $3;}                                    /* Bitwise AND Operation*/
   | T OR F           {$$ = $1 | $3;}                                    /* Bitwise OR  Operation*/
-  | NOT F            {$$ = ~ $2;}                                       /* Bitwise NOT Operation*/
   | T XOR F          {$$ = $1 ^ $3;}                                    /* Bitwise XOR Operation*/
   | F                {$$ = $1;}                                         /* to more piority operation*/
   ;
 
 F : '(' E ')'        {$$ = $2;}                                         /* ( ) */
   | '-' F            {$$ = -$2;}                                        /* negative value */
+  | NOT F            {$$ = ~ $2;}                                       /* Bitwise NOT Operation*/
   | NUM              {$$ = $1;}
   | R                {$$ = $1;}
   ;
