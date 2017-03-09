@@ -4,33 +4,33 @@
   #include <string.h>
   #include "y.tab.h"
   void yyerror(char *);
-  int htoi(char *);
-  int Ohtoi(char c);
+  int htoi(char *);   /* change base 16 to base 10 number */
+  int Ohtoi(char c);  /* change base 16 to base 10 number (1 character) */
 %}
 
 %%
 
-"$r"[A-Z]                           { yylval.c = yytext[2]-'A';  return VAR;}
-[0-9]+                              {yylval.i = atoi(yytext); return NUM;}
-[0-9A-Fa-f]+[Hh]                    {yylval.i = htoi(yytext); return NUM;}
-[-+*()\n/=\\]                       {return *yytext;}
-("AND"|"&")                         {return AND;}
-("OR"|"|")                          {return OR;}
-("NOT"|"!"|"~")                     {return NOT;}
-("XOR"|"^")                         {return XOR;}
-"PUSH"                              {return PUSH;}
-"POP"                               {return POP;}
-"SHOW"                              {return SHOW;}
-"LOAD"                              {return LOAD;}
-"$top"                              {return TOP;}
-"$size"                             {return SIZE;}
-"$acc"                              {return ACC;}
+"$r"[A-Z]                           { yylval.c = yytext[2]-'A';  return VAR;}   /* Variable Token ($rA-$rZ) */
+[0-9]+                              {yylval.i = atoi(yytext); return NUM;}      /* number Token (0-infinity)*/
+[0-9A-Fa-f]+[Hh]                    {yylval.i = htoi(yytext); return NUM;}      /* base 16 number Token (15AH) */
+[-+*()\n/=\\]                       {return *yytext;}                           /* operation Token */
+("AND"|"&")                         {return AND;}                               /* Bitwise AND Token */
+("OR"|"|")                          {return OR;}                                /* Bitwise OR  Token */
+("NOT"|"!"|"~")                     {return NOT;}                               /* Bitwise NOT Token */
+("XOR"|"^")                         {return XOR;}                               /* Bitwise XOR Token */
+"PUSH"                              {return PUSH;}                              /* PUSH Token */
+"POP"                               {return POP;}                               /* POP Token */
+"SHOW"                              {return SHOW;}                              /* SHOW Token */
+"LOAD"                              {return LOAD;}                              /* LOAD Token */
+"$top"                              {return TOP;}                               /* $top Token */
+"$size"                             {return SIZE;}                              /* $size Token */
+"$acc"                              {return ACC;}                               /* $acc Token */
 [ \t\f\v] ; //Ignore
-.                                   {return UNKNOWN;}
+.                                   {return UNKNOWN;}                           /* out of gramma character Token */
 
 %%
 
-int Ohtoi(char c){
+int Ohtoi(char c){  /* change base 16 to base 10 number (1 character) */
 	int r;
 	if(c>='0' && c<='9'){
 		r = c - '0';
@@ -44,7 +44,7 @@ int Ohtoi(char c){
 	return r;
 }
 
-int htoi(char *s){
+int htoi(char *s){  /* change base 16 to base 10 number */
 	int i;
 	int result = Ohtoi(s[0]);
 	for(i=1; i<strlen(s)-1; i++){
